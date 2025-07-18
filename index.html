@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monitor de Velocidade</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <header class="dashboard-header">
+            <h1><i class="fas fa-tachometer-alt"></i> Monitor de Velocidade</h1>
+            <div class="header-actions">
+                <button id="importButton" class="btn-primary">
+                    <i class="fas fa-file-import"></i> Importar Dados
+                </button>
+                <input type="file" id="fileInput" accept=".xlsx,.csv" style="display:none;">
+            </div>
+        </header>
+
+        <div class="main-content">
+            <aside class="sidebar">
+                <div class="filters-card">
+                    <h3><i class="fas fa-filter"></i> Filtros</h3>
+                    <div class="filter-group">
+                        <label for="dateRange">Período:</label>
+                        <select id="dateRange" class="form-control">
+                            <option value="7">Últimos 7 dias</option>
+                            <option value="30">Últimos 30 dias</option>
+                            <option value="custom">Personalizado</option>
+                        </select>
+                    </div>
+                    
+                    <div id="customDateRange" class="filter-group" style="display:none;">
+                        <label for="startDate">De:</label>
+                        <input type="date" id="startDate" class="form-control">
+                        <label for="endDate">Até:</label>
+                        <input type="date" id="endDate" class="form-control">
+                    </div>
+                    <div class="filter-group">
+                        <label for="driverFilter">Motorista:</label>
+                        <select id="driverFilter" class="form-control">
+                            <option value="all">Todos</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="vehicleFilter">Veículo:</label>
+                        <select id="vehicleFilter" class="form-control">
+                            <option value="all">Todos</option>
+                        </select>
+                    </div>
+                    <button id="applyFilters" class="btn-primary">
+                        <i class="fas fa-check"></i> Aplicar Filtros
+                    </button>
+                </div>
+
+                <div class="stats-card">
+                    <h3><i class="fas fa-chart-bar"></i> Estatísticas</h3>
+                    <div class="stat-item">
+                        <span class="stat-label">Notificações Hoje:</span>
+                        <span class="stat-value" id="todayViolations">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Atualizado em:</span>
+                        <span class="stat-value" id="lastUpdate">--:--:--</span>
+                    </div>
+                </div>
+            </aside>
+
+            <main class="content-area">
+                <div class="calendar-container">
+                    <div id="calendar"></div>
+                </div>
+                
+                <div class="data-table-container">
+                    <h3><i class="fas fa-table"></i> Registros de Violação</h3>
+                    <div class="table-responsive">
+                        <table id="violationsTable">
+                            <thead>
+                                <tr>
+                                    <th>Data</th>
+                                    <th>Hora</th>
+                                    <th>Motorista</th>
+                                    <th>Veículo</th>
+                                    <th>Velocidade</th>
+                                    <th>Limite</th>
+                                    <th>Diferença</th>
+                                    <th>Local</th>
+                                </tr>
+                            </thead>
+                            <tbody id="violationsTableBody">
+                                <!-- Dados serão inseridos aqui -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/locales/pt-br.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
